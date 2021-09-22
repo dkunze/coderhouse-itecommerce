@@ -2,7 +2,7 @@ import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
 import CartWidget from "./CartWidget";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   return (
@@ -15,11 +15,11 @@ export const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link to="/">
-              <Nav.Link href="#link">Inicio</Nav.Link>
+              <Nav.Link href="#link">Home</Nav.Link>
             </Link>
 
             <Link to="/categories/computadoras">
-              <Nav.Link href="#link">Computadoras</Nav.Link>
+              <Nav.Link href="#link">Computers</Nav.Link>
             </Link>
 
             <Link to="/categories/notebooks">
@@ -27,7 +27,7 @@ export const NavBar = () => {
             </Link>
 
             <Link to="/categories/impresoras">
-              <Nav.Link href="#link">Impresoras</Nav.Link>
+              <Nav.Link href="#link">Printers</Nav.Link>
             </Link>
 
             <Link to="/categories/tablets">
