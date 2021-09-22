@@ -1,3 +1,4 @@
+import React from 'react'
 import Item from '../ItemList/Item'
 
 const ItemList = props => {    

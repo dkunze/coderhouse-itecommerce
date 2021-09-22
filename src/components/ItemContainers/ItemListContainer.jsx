@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react';
 import { getFetch } from '../../utils/Mock';
 import ItemList from '../ItemList/ItemList';
@@ -27,11 +28,7 @@ function ItemListContainer({gretting}) {
 
   }, [categoryId])
 
-  return <>
-    {
-      loading ? <h2>Loading...</h2> : <ItemList product={product} />
-    }
-  </>
+  return (loading ? <h2>Loading...</h2> : <ItemList product={product} />)    
 }
 
 export default ItemListContainer;

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState, createContext, useContext } from "react";
 
 const cartContext = createContext()
@@ -12,7 +13,8 @@ export const CartContext = ({ children }) => {
     function addItem(item, count) {
         setCartList([
             ...cartList,
-            item
+            item,
+            {'qty':count}
         ])
         console.log(cartList)
     }

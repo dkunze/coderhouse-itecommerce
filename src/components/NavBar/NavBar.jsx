@@ -1,3 +1,4 @@
+import React from 'react'
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
@@ -18,7 +19,7 @@ export const NavBar = () => {
               <Nav.Link href="#link">Home</Nav.Link>
             </Link>
 
-            <Link to="/categories/computadoras">
+            <Link to="/categories/computers">
               <Nav.Link href="#link">Computers</Nav.Link>
             </Link>
 
@@ -26,7 +27,7 @@ export const NavBar = () => {
               <Nav.Link href="#link">Notebooks</Nav.Link>
             </Link>
 
-            <Link to="/categories/impresoras">
+            <Link to="/categories/printers">
               <Nav.Link href="#link">Printers</Nav.Link>
             </Link>
 

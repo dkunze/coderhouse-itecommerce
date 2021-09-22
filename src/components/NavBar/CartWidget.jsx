@@ -1,3 +1,4 @@
+import React from 'react'
 function CartWidget() {
   return (
     <div className="float-right">

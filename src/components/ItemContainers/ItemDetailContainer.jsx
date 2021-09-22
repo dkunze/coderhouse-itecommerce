@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react';
 import { getFetch } from '../../utils/Mock';
 import ItemDetail from '../ItemList/ItemDetail';
@@ -18,12 +19,8 @@ function ItemDetailContainer() {
         .catch(error => console.log(error))
     }
   }, [productId])
-  
-  return <>
-    {
-      loading ? <h2>Loading...</h2> : <ItemDetail product={product} />
-    }
-  </>
+
+  return ( loading ? <h2>Loading...</h2> : <ItemDetail product={product} /> )
 }
 
 export default ItemDetailContainer;

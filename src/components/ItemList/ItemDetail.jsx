@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from "react"
 import { useCartContext } from "../../Context/cartContext"
 import ItemCount from "./ItemCount"
@@ -27,9 +28,8 @@ const ItemDetail = props => {
         setChangeButton(true)
     }
 
-
     return (
-        <>
+        <div>
             <div className={classes.marginTop + " row"}>
                 <h3>Product Details</h3>
             </div>
@@ -74,9 +74,8 @@ const ItemDetail = props => {
                         </div>
                     </div>
                 </div>
-
             </div>
-        </>
+        </div>
     )
 }
 
