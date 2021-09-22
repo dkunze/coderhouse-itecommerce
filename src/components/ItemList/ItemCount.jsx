@@ -17,17 +17,17 @@ function ItemCount({ stock, initial, onAdd }) {
 
     return (
         <div className="row">
-            <div className="col-2">
-                <button onClick={minus} className="btn btn-sm btn-danger">-</button>
+            <div className="col-1">
+                <button onClick={minus} className="btn btn btn-default">-</button>
             </div>
-            <div className="col-8">
-                <input type="text" className="form-control text-center" value={count} />
+            <div className="col-10">
+                <input type="text" className="form-control text-center" value={count} readOnly />
             </div>
-            <div className="col-2">
-                <button onClick={sum} className="btn btn-sm btn-success">+</button>
+            <div className="col-1">
+                <button onClick={sum} className="btn btn btn-default">+</button>
             </div>
             <div className="col-12 mt-1">
-                <button className="btn btn-warning btn-block" onClick={onAdd}>Add Cart</button>
+                <button className="btn btn-warning btn-block" onClick={() => { onAdd(count) }}>Add Cart</button>
             </div>
         </div>
     )

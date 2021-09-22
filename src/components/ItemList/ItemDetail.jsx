@@ -22,8 +22,8 @@ const ItemDetail = props => {
     const { addItem } = useCartContext()
     const [changeButton, setChangeButton] = useState(false)
 
-    const onAdd = () => {
-        addItem(props, 1)
+    const onAdd = (count) => {
+        addItem(props, count)
         setChangeButton(true)
     }
 

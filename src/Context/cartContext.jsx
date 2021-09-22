@@ -9,8 +9,11 @@ export const CartContext = ({ children }) => {
     const [cartList, setCartList] = useState([])
     const [isInCart, setIsInCart] = useState(false)
 
-    function addItem(item) {
-        setCartList([...cartList, item])
+    function addItem(item, count) {
+        setCartList([
+            ...cartList,
+            item
+        ])
         console.log(cartList)
     }
 
