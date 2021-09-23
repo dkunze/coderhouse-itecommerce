@@ -1,7 +1,10 @@
 import React from 'react'
 import { useCartContext } from '../../Context/cartContext';
 
+console.log('Hello')
 const Cart = () => {
+    console.log('Hello x2')
+    
     const { cartList } = useCartContext()
     console.log(cartList)
 
@@ -12,6 +15,7 @@ const Cart = () => {
             })}
         </div>
     )
+    
 }
 
 export default Cart
