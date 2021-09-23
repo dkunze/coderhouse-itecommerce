@@ -11,8 +11,17 @@ export const CartContext = ({ children }) => {
     const [isInCart, setIsInCart] = useState(false)
 
     function addItem(item, quantity) {
-        setCartList([...cartList, { item, quantity }])
-        console.log(cartList)
+        let searchItem = cartList.find(product => product.item.id === item.id)
+        if (!searchItem) {
+            setCartList([...cartList, { item, quantity }])
+        } else {
+            // If the product already exists in our cart, we have to update the quantity
+            cartList.map((product, index) => {
+                if (product.item.id === item.id) {
+                    cartList[index].quantity = cartList[index].quantity + quantity
+                }
+            })
+        }
     }
 
     function removeItem(item) {

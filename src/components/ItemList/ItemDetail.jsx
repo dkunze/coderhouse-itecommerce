@@ -24,7 +24,7 @@ const ItemDetail = props => {
     const [changeButton, setChangeButton] = useState(false)
 
     const onAdd = (count) => {
-        addItem(props, count)
+        addItem(props.product, count)
         setChangeButton(true)
     }
 
