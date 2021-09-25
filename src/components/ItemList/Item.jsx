@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Item = props => {
-    
+const Item = props => {    
     return (
         <div key={props.p.id} className="card w-50 mt-5">
             <div className="card-header">
