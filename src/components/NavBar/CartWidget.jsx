@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useCartContext } from '../../Context/cartContext';
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -11,8 +11,7 @@ const useStyles = makeStyles({
 
 function CartWidget() {
   const classes = useStyles()
-  const { cartList, cartListTotal } = useCartContext()
-  const [totalCart, setTotalCart] = useState(0)
+  const { cartListTotal } = useCartContext()
 
   return (
     <div className="mt-1 float-right">

@@ -34,8 +34,8 @@ export const CartContext = ({ children }) => {
         setCartList(newArray)        
     }
 
-    function clear() {
-
+    function clearCart() {
+        setCartList([])
     }
 
     return (
@@ -44,7 +44,8 @@ export const CartContext = ({ children }) => {
             addItem,
             removeItem,
             cartListTotal,
-            setCartListTotal
+            setCartListTotal,
+            clearCart
         }} >
             {children}
         </cartContext.Provider>
