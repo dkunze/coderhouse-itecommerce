@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { getFirestore } from '../../services/getFirebase';
 import CartContactForm from '../Cart/CartContactForm'
 import cartUpdateItemsStock from '../../services/cartUpdateItemsStock';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import { Modal, Button } from 'react-bootstrap';
 
 import firebase from "firebase";
 import 'firebase/firestore'
@@ -14,63 +13,76 @@ const Cart = () => {
   const { cartList, removeItem, cartListTotal, setCartListTotal, clearCart, setCartList } = useCartContext();
   const calculateTotal = cartList.length > 0 ? cartList.map((element) => element.item.price * element.quantity).reduce((a, b) => parseFloat(a, 10) + parseFloat(b, 10)) : 0;
   const calculateQuantity = cartList.length > 0 ? cartList.map((element) => element.quantity).reduce((a, b) => parseFloat(a, 10) + parseFloat(b, 10)) : 0;
-  const [reload, setReload] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
-  const handleClose = () => setModalShow(false);
   const [loading, setLoading] = useState(false);
   const [orderNumber, setOrderNumber] = useState(0)
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    email: ''
+    email: '',
+    repeat_email: ''
   })
 
+  const [modalShow, setModalShow] = useState(false);
+  const [modalEmailErrorShow, setModalEmailErrorShow] = useState(false);
+  const handleClose = () => setModalShow(false);
+  const handleEmailErrorClose = () => setModalEmailErrorShow(false);
+
   const handleDisabledBtn = () => {
-    return !formData.name?.length || !formData.phone?.length || !formData.email?.length  
+    return !formData.name?.length || !formData.phone?.length || !formData.email?.length || !formData.repeat_email?.length
   }
 
   // Contact form sending the data from your cart.
   const handleOnSubmit = (e) => {
     e.preventDefault()
-    setLoading(true)
 
-    let order = {}
-    order.date = firebase.firestore.Timestamp.fromDate(new Date())
-    order.buyer = formData
-    order.total = calculateTotal
-    order.items = cartList.map(cartItem => {
-      const id = cartItem.item.id;
-      const name = cartItem.item.name;
-      const price = cartItem.item.price;
-      return { id, name, price }
-    })
+    // Check email and repeat email values are equal
+    if (formData.email !== formData.repeat_email) {
+      // Show the error email modal 
+      setModalEmailErrorShow(true)
+    } else {
+      setModalEmailErrorShow(false)
+      setLoading(true)
 
-    const dbQuery = getFirestore();
-    dbQuery
-      .collection('orders')
-      .add(order)
-      .then((res) => {        
-        setOrderNumber(res.id)
+      let order = {}
+      order.date = firebase.firestore.Timestamp.fromDate(new Date())
+      order.status = 'generated'
+      order.buyer = formData
+      order.total = calculateTotal
+      order.items = cartList.map(cartItem => {
+        const id = cartItem.item.id;
+        const name = cartItem.item.name;
+        const price = cartItem.item.price;
+        const quantity = cartItem.quantity;
+        return { id, name, price, quantity }
       })
-      .catch((error) => console.log(error))
-      .finally(() => {
-        // Clear form data
-        setFormData({
-          name: '',
-          phone: '',
-          email: ''
+
+      const dbQuery = getFirestore();
+      dbQuery
+        .collection('orders')
+        .add(order)
+        .then((res) => {
+          setOrderNumber(res.id)
         })
-        // Clear cart list
-        setCartList([])
-        // Clear cart total
-        setCartListTotal(0)
-        // Update stock to all items
-        cartUpdateItemsStock(cartList, dbQuery)
-        // Set loading to false 
-        setLoading(false)
-        // Show the modal 
-        setModalShow(true)
-      })
+        .catch((error) => console.log(error))
+        .finally(() => {
+          // Clear form data
+          setFormData({
+            name: '',
+            phone: '',
+            email: ''
+          })
+          // Clear cart list
+          setCartList([])
+          // Clear cart total
+          setCartListTotal(0)
+          // Update stock to all items
+          cartUpdateItemsStock(cartList, dbQuery)
+          // Set loading to false 
+          setLoading(false)
+          // Show the modal 
+          setModalShow(true)
+        })
+    }
   }
 
   // Set the data into the formData
@@ -82,10 +94,6 @@ const Cart = () => {
 
   }
 
-  useEffect(() => {
-    //setReload(!reload);
-  }, [cartList]);
-
   const deleteItem = (element) => {
     cartList.map((item, index) => {
       if (item.item.id === element.item.id) {
@@ -93,10 +101,8 @@ const Cart = () => {
           removeItem(element.item.id);
         } else {
           cartList[index].quantity = cartList[index].quantity - 1;
-          setReload(!reload);
         }
         setCartListTotal(cartListTotal - 1);
-        setReload(!reload);
       }
       return true
     });
@@ -192,6 +198,19 @@ const Cart = () => {
         <Modal.Body>Thank you for your purchase! You will get notified soon. Use this Order Number <b>#{orderNumber}</b> for make the follow up!</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
+      <Modal show={modalEmailErrorShow} onHide={handleEmailErrorClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Please, complete the requested form with the correct data. Your e-mail address seems to be wrong. Check it out and try again!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleEmailErrorClose}>
             Close
           </Button>
         </Modal.Footer>

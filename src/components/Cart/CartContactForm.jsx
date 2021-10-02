@@ -38,6 +38,12 @@ const CartContactForm = (props) => {
                         <input type='email' name='email' className='form-control' defaultValue={formData.email} placeholder='Your email' autoComplete='off' />
                     </div>
                 </div>
+                <div className='form-group row'>
+                    <label className={classes.alignRight + ' col-sm-3 col-form-label'}>Repeat E-mail *</label>
+                    <div className='col-sm-9'>
+                        <input type='email' name='repeat_email' className='form-control' defaultValue={formData.repeat_email} placeholder='Repeat your email' autoComplete='off' />
+                    </div>
+                </div>
                 <div className="mt-2">
                     <button disabled={handleDisabledBtn()} className="btn btn-success">Complete Order</button>
                 </div>
