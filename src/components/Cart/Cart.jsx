@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useCartContext } from '../../Context/cartContext';
 import { Link } from 'react-router-dom';
 import { getFirestore } from '../../services/getFirebase';
