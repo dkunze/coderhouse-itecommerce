@@ -38,7 +38,7 @@ const ItemDetail = props => {
                 <div className="row d-flex justify-content-center">
                     <div key={product.id} className="col-6 card">
                         <div className="card-header">
-                            {product.name}
+                            <b>{product.name}</b>
                         </div>
                         <div className="card-body">
                             <img src={product.photo} alt={product.name} />

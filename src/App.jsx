@@ -6,10 +6,11 @@ import ItemListContainer from "./components/ItemContainers/ItemListContainer";
 import ItemDetailContainer from "./components/ItemContainers/ItemDetailContainer";
 import Cart from './components/Cart/Cart'
 import CartContext from './Context/cartContext'
+import PageNotFound from './NotFound'
 
 function App() {
   return (
-    <CartContext>
+    /*<CartContext>
       <Router>
         <div className="container">
           <NavBar />
@@ -17,18 +18,31 @@ function App() {
           <Switch>
             <>
               <div className="text-center">
-                <Route path='/' exact>
-                  <ItemListContainer gretting="Hey there! This is my first ReactJs App!" />
-                </Route>
+                <Route path='/' exact component={ItemListContainer} />                                
                 <Route path='/categories/:categoryId' exact component={ItemListContainer} />
                 <Route path='/details/:productId' exact component={ItemDetailContainer} />
                 <Route path='/cart' exact component={Cart} />
+                <Route component={PageNotFound} />              
               </div>
             </>
           </Switch>
         </div>
       </Router>
-    </CartContext>
+    </CartContext>*/
+
+    <Router>
+      <CartContext>
+        <NavBar />
+        <Switch>
+          <Route path='/' exact component={ItemListContainer} />
+          <Route path='/categories/:categoryId' exact component={ItemListContainer} />
+          <Route path='/details/:productId' exact component={ItemDetailContainer} />
+          <Route path='/cart' exact component={Cart} />
+          <Route component={PageNotFound} />
+
+        </Switch>
+      </CartContext>
+    </Router>
   )
 }
 

@@ -21,7 +21,7 @@ function ItemListContainer({ gretting }) {
       .catch(error => console.log(error))
   }, [categoryId])
 
-  return (loading ? <h2>Loading...</h2> : <ItemList product={product} />)
+  return (loading ? <div className="container text-center"><h2>Loading...</h2></div> : <div className="container text-center"><ItemList product={product} /></div>)
 }
 
 export default ItemListContainer;

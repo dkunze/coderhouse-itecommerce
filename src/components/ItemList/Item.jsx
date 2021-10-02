@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 
-const Item = props => {    
+const Item = props => {
     return (
         <div key={props.p.id} className="card w-50 mt-5">
             <div className="card-header">
-                {props.p.name}
+                <b>{props.p.name}</b>
             </div>
             <div className="card-body">
                 <img src={props.p.photo} alt={props.p.name} />

@@ -109,7 +109,7 @@ const Cart = () => {
   };
 
   return (
-    <div>
+    <div className="container text-center">
       {loading && (
         <div>Please, wait...</div>
       )}

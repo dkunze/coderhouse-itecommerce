@@ -22,7 +22,7 @@ function ItemDetailContainer() {
     }
   }, [productId])
 
-  return (loading ? <h2>Loading...</h2> : <ItemDetail product={product} nonExists={nonExists} />)
+  return (loading ? <div className="container text-center"><h2>Loading...</h2></div> : <div className="container text-center"><ItemDetail product={product} nonExists={nonExists} /></div>)
 }
 
 export default ItemDetailContainer;
