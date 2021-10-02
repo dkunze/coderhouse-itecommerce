@@ -1,4 +1,3 @@
-import React from 'react'
 import { useCartContext } from '../../Context/cartContext';
 import { makeStyles } from '@material-ui/core/styles'
 

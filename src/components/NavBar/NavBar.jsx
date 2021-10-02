@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -21,7 +21,7 @@ export const NavBar = () => {
         );
       })
       .catch((error) => console.log(error));
-  }, []);  
+  }, []);
 
   return (
     <Navbar bg="light" expand="lg">
@@ -38,14 +38,9 @@ export const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {
-              categories &&
-              categories.map( (item, index)  => {                
-                return (<Link to={item.url} key={index}>
-                  <Nav.Link href="#link">{item.name}</Nav.Link>
-                </Link>)
-              })
-            }
+            {categories && categories.map((item, index) => {
+              return (<Link className='btn' to={item.url} key={index}>{item.name}</Link>)
+            })}
             <Link to="/cart">
               <CartWidget />
             </Link>

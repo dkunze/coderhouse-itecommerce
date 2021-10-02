@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, createContext, useContext } from "react";
 
 const cartContext = createContext()
@@ -9,7 +8,6 @@ export const useCartContext = () => {
 export const CartContext = ({ children }) => {
     const [cartList, setCartList] = useState([])
     const [cartListTotal, setCartListTotal] = useState(0)
-    //const [isInCart, setIsInCart] = useState(false)
 
     function addItem(item, quantity) {
         setCartListTotal(0)
@@ -24,7 +22,7 @@ export const CartContext = ({ children }) => {
                 if (product.item.id === item.id) {
                     cartList[index].quantity = cartList[index].quantity + quantity                    
                 }
-                setCartListTotal(cartListTotal + cartList.quantity)    
+                return setCartListTotal(cartListTotal + cartList.quantity)    
             })
         }
     }
@@ -45,7 +43,8 @@ export const CartContext = ({ children }) => {
             removeItem,
             cartListTotal,
             setCartListTotal,
-            clearCart
+            clearCart,
+            setCartList
         }} >
             {children}
         </cartContext.Provider>

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState } from "react"
 import { useCartContext } from "../../Context/cartContext"
 import ItemCount from "./ItemCount"

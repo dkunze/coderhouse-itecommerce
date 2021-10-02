@@ -1,4 +1,3 @@
-import React from 'react'
 import { useEffect, useState } from 'react';
 import ItemDetail from '../ItemList/ItemDetail';
 import { useParams } from 'react-router-dom';
@@ -22,7 +21,7 @@ function ItemDetailContainer() {
     }
   }, [productId])
 
-  return ( loading ? <h2>Loading...</h2> : <ItemDetail product={product} /> )
+  return (loading ? <h2>Loading...</h2> : <ItemDetail product={product} />)
 }
 
 export default ItemDetailContainer;
