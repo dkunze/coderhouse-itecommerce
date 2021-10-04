@@ -10,26 +10,6 @@ import PageNotFound from './NotFound'
 
 function App() {
   return (
-    /*<CartContext>
-      <Router>
-        <div className="container">
-          <NavBar />
-
-          <Switch>
-            <>
-              <div className="text-center">
-                <Route path='/' exact component={ItemListContainer} />                                
-                <Route path='/categories/:categoryId' exact component={ItemListContainer} />
-                <Route path='/details/:productId' exact component={ItemDetailContainer} />
-                <Route path='/cart' exact component={Cart} />
-                <Route component={PageNotFound} />              
-              </div>
-            </>
-          </Switch>
-        </div>
-      </Router>
-    </CartContext>*/
-
     <Router>
       <CartContext>
         <NavBar />
